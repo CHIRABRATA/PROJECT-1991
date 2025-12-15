@@ -1,0 +1,157 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  /* Deep cinematic gradient instead of flat color */
+  background:
+    radial-gradient(1200px 600px at 50% -20%, #14107a 0%, transparent 60%),
+    radial-gradient(800px 400px at 80% 20%, #0b3a7a 0%, transparent 55%),
+    linear-gradient(180deg, #050417 0%, #070b2b 40%, #040215 100%);
+  color: #e6ebff;
+  font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Premium Glass Effect */
+.glass {
+  backdrop-filter: blur(10px) saturate(140%);
+  -webkit-backdrop-filter: blur(10px) saturate(140%);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(20, 24, 90, 0.75),
+      rgba(10, 12, 50, 0.55)
+    );
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.08),
+    0 12px 40px rgba(0,0,0,0.45);
+}
+
+/* Electric accent color (used in nav, CTA, active states) */
+:root {
+  --electric: #3b82f6;
+}
+
+/* Optional subtle glow utility */
+.glow-electric {
+  box-shadow:
+    0 0 12px rgba(59,130,246,0.35),
+    0 0 30px rgba(59,130,246,0.15);
+}
+
+/* Smooth transitions everywhere */
+* {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+}
+
+.cta-hover {
+  transition: box-shadow .3s ease, transform .2s ease;
+}
+.cta-hover:hover { box-shadow: 0 0 24px rgba(59,130,246,0.35); }
+
+.footer-gradient {
+  background:
+    radial-gradient(1200px 400px at 50% -10%, rgba(59,130,246,0.25), transparent 60%),
+    linear-gradient(to bottom, #020617, #020617 20%, #0b1e4b 100%);
+}
+
+
+.footer-enter {
+  animation: footerFadeUp .8s ease both;
+}
+@keyframes footerFadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hover-raise {
+  transition: transform .2s ease, box-shadow .2s ease, color .2s ease, background-color .2s ease;
+}
+.hover-raise:hover { transform: translateY(-1px); box-shadow: 0 2px 12px rgba(0,0,0,0.25); }
+
+.pressable { transition: transform .1s ease; }
+.pressable:active { transform: scale(0.98); }
+
+.link-underline {
+  color: rgba(255,255,255,0.9);
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+  transition: background-size .2s ease, color .2s ease;
+}
+.link-underline:hover { background-size: 100% 2px; }
+.link-underline:focus-visible { background-size: 100% 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .footer-enter { animation: none; }
+  .hover-raise, .pressable, .link-underline { transition: none; }
+}
+
+/* Huly-style beam */
+.beam-core {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    #8ab4ff 40%,
+    #ffffff 50%,
+    #8ab4ff 60%,
+    transparent 100%
+  );
+  filter: blur(0.5px);
+  box-shadow:
+    0 0 30px rgba(138,180,255,0.9),
+    0 0 80px rgba(59,130,246,0.6);
+}
+
+/* Soft bloom */
+.beam-glow {
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(59,130,246,0.35),
+    transparent
+  );
+  filter: blur(18px);
+}
+/* Cinematic vertical beam */
+.beam-core {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    #8ab4ff 38%,
+    #ffffff 50%,
+    #8ab4ff 62%,
+    transparent 100%
+  );
+  filter: blur(0.6px);
+  box-shadow:
+    0 0 40px rgba(138,180,255,0.9),
+    0 0 120px rgba(59,130,246,0.55);
+}
+
+.beam-glow {
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(59,130,246,0.35),
+    transparent
+  );
+  filter: blur(22px);
+}
