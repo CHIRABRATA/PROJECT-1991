@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import HeroScene from '../components/HeroScene.jsx'
 import PageTransition from '../components/PageTransition.jsx'
+import LightRays from '../components/LightRays'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -18,26 +19,52 @@ const Landing = () => {
       {/* ================= BACKGROUND ================= */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
 
-        {/* Base gradient */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-black via-[#0b1220] to-[#0b1f3a]" />
+        {/* Base gradient (matches your image) */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_#020617_0%,_#0b1220_45%,_#0b1f3a_100%)]" />
 
-        {/* Ambient glow */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(59,130,246,0.18),_transparent_65%)]" />
+        {/* Ambient soft teal glow */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(14,165,165,0.15),_transparent_65%)]" />
 
         {/* Vertical beam core */}
         <motion.div
           initial={{ opacity: 0, scaleY: 0.6 }}
           animate={{ opacity: 1, scaleY: 1 }}
           transition={{ duration: 1.6, ease: 'easeInOut' }}
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[140vh] w-[6px] beam-core"
+          className="
+            absolute left-1/2 top-1/2 
+            -translate-x-1/2 -translate-y-1/2 
+            h-[140vh] w-[5px]
+            bg-gradient-to-b from-transparent via-cyan-400/40 to-transparent
+            blur-[1px]
+          "
         />
 
         {/* Beam glow */}
         <motion.div
-          animate={{ opacity: [0.25, 0.55, 0.25] }}
+          animate={{ opacity: [0.2, 0.45, 0.2] }}
           transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[140vh] w-[44px] beam-glow"
+          className="
+            absolute left-1/2 top-1/2 
+            -translate-x-1/2 -translate-y-1/2 
+            h-[140vh] w-[42px]
+            bg-cyan-400/15 blur-3xl
+          "
         />
+
+        {/* Light Rays */}
+        <div className="absolute inset-0">
+          <LightRays
+            raysOrigin="top-center"
+            raysColor="rgba(56,189,248,0.35)"
+            raysSpeed={1.2}
+            lightSpread={0.6}
+            rayLength={1}
+            followMouse={true}
+            mouseInfluence={0.08}
+            noiseAmount={0.08}
+            distortion={0.04}
+          />
+        </div>
       </div>
 
       {/* ================= HERO SCENE ================= */}
@@ -47,6 +74,7 @@ const Landing = () => {
       <div className="relative z-20 pt-28">
         <div className="mx-auto max-w-7xl px-4">
           <PageTransition>
+
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -60,7 +88,7 @@ const Landing = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.4, ease: 'easeInOut', delay: 0.2 }}
-              className="mt-4 max-w-2xl text-white/80"
+              className="mt-4 max-w-2xl text-white/75"
             >
               Calm, immersive, cinematic experience with notes, PYQs, smart
               navigation, and structured learning paths.
@@ -71,14 +99,23 @@ const Landing = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.1, ease: 'easeInOut', delay: 0.4 }}
               whileHover={{
-                boxShadow: '0 0 28px rgba(59,130,246,0.45)',
+                boxShadow: '0 0 30px rgba(56,189,248,0.35)',
                 scale: 1.04
               }}
               onClick={() => navigate('/degrees')}
-              className="cta-hover mt-8 rounded-full bg-electric/20 border border-electric/40 px-6 py-3 font-semibold"
+              className="
+                mt-8 rounded-full 
+                bg-cyan-500/10 
+                border border-cyan-400/30 
+                px-6 py-3 
+                font-semibold 
+                text-cyan-200
+                backdrop-blur-md
+              "
             >
               Explore Resources
             </motion.button>
+
           </PageTransition>
         </div>
       </div>
@@ -117,7 +154,7 @@ const Landing = () => {
               whileInView="visible"
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: i * 0.15 }}
-              className="glass rounded-2xl p-6"
+              className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md p-6"
             >
               <h3 className="text-lg font-semibold">{item.title}</h3>
               <p className="mt-2 text-sm text-white/70">{item.desc}</p>
@@ -149,9 +186,9 @@ const Landing = () => {
                 whileInView="visible"
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: i * 0.2 }}
-                className="rounded-xl border border-white/10 bg-white/5 p-6"
+                className="rounded-xl border border-white/10 bg-white/5 backdrop-blur-md p-6"
               >
-                <div className="mb-2 text-xl font-bold text-electric">
+                <div className="mb-2 text-xl font-bold text-cyan-300">
                   0{i + 1}
                 </div>
                 <div className="font-medium">{step}</div>
@@ -179,12 +216,21 @@ const Landing = () => {
           </p>
           <button
             onClick={() => navigate('/degrees')}
-            className="mt-8 rounded-full bg-electric px-8 py-3 font-semibold text-black transition hover:scale-105"
+            className="
+              mt-8 rounded-full 
+              bg-cyan-400 
+              px-8 py-3 
+              font-semibold 
+              text-black 
+              transition 
+              hover:scale-105
+            "
           >
             Get Started
           </button>
         </motion.div>
       </section>
+
     </div>
   )
 }

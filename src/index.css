@@ -155,3 +155,13 @@ body {
   );
   filter: blur(22px);
 }
+.glass {
+  backdrop-filter: blur(12px);
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.08),
+    rgba(255,255,255,0.02)
+  );
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 0 40px rgba(90,120,255,0.15);
+}
