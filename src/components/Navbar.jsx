@@ -91,13 +91,7 @@ const Navbar = () => {
                 {[
                   ['Degrees', '/degrees'],
                   ['Resources', '/resources'],
-                  ['Labs', '/labs'],
-                  ['Infographics', '/infographics'],
-                  ['Quizzes', '/quizzes'],
                   ['Instructors', '/instructors'],
-                  ['Success', '/success'],
-                  ['Campus', '/campus'],
-                  ['Forum', '/forum'],
                   ['Feedback', '/feedback'],
                   ['Login', '/auth']
                 ].map(([label, path]) => (
